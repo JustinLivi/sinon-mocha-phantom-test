@@ -1,8 +1,17 @@
 (function() {
+
+	describe('chai as promised', function() {
+
+		it('should resolve a promise', function() {
+			var promise = new Promise(function( resolve ) {
+				setTimeout( resolve, 1000 );
+			});
+			return expect( promise ).to.have.been.fulfilled;
+		});
+
+	});
 	
 	describe('sinon.useFakeTimers()', function() {
-
-		var page;
 
 		before(function() {
 			this.clock = sinon.useFakeTimers();
