@@ -11,7 +11,7 @@
 		});
 
 	});
-	
+
 	// Fails
 	describe('sinon.useFakeTimers()', function() {
 
@@ -56,5 +56,34 @@
 		});
 
 	});
+
+    describe( 'fatso83 test', function() {
+        before(function() {
+            this.clock = sinon.useFakeTimers();
+        });
+
+        it('should resolve a promise after ticking', function(done) {
+
+            var promise = new Promise(function( resolve ) {
+                setTimeout( resolve, 10000 );
+            });
+
+            this.clock.tick( 10001 );
+
+            promise
+                .then(done) // call done when the promise completes
+                .catch(done); // catch any accidental errors
+        });
+
+        it('should resolve a promise after ticking', function() {
+            var promise = new Promise(function( resolve ) {
+                setTimeout( resolve, 10000 );
+            });
+
+            this.clock.tick( 10001 );
+
+            return promise;
+        });
+    });
 
 })();
